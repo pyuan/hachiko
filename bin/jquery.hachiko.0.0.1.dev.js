@@ -11,7 +11,7 @@
 			opts.element = $(this);
 			
 			if(!isDestroyCommand(opts)) {
-				$.hachiko._createClone(opts);
+				$.hachiko._init(opts);
 			}
 			
 			//destroy sticky cloned element
@@ -46,6 +46,7 @@
 	 * @param left, int, distance in px from the left, if specified overrides right
 	 * @param right, int, distance in px from the right
 	 * @param element, DOM element to insert the message
+	 * @param parent, DOM elment to insert the clone, if not set, the body will be used
 	 */
 	$.fn.hachiko.options = 
 	{
@@ -54,6 +55,7 @@
 		left: null,
 		right: null,
 		element: "",
+		parent: null,
 	}
 
 })(jQuery);
@@ -72,20 +74,44 @@ jQuery.extend({
     	DESTROY_COMMAND : "destroy",
     	
     	/**
+    	 * initialize by storing the options in the DOM
+    	 * @param options, object 
+    	 */
+    	_init: function(options)
+    	{
+    		var element = options && options.element ? options.element : undefined;
+    		if(element)
+    		{
+    			//remove any previous clone
+    			this._destroy(options);
+    			
+    			//store options in the DOM
+    			$(element).data(this.NAMESPACE, options).addClass(this.ORIGINAL_ELEMENT_CLASS);
+    			
+    			//attach window scroll event handler
+    			var self = this;
+    			var scrollEvent = "scroll." + this.NAMESPACE;
+    			$(window).on(scrollEvent, function(event){
+    				self._onWindowScroll(event);
+    			}).trigger(scrollEvent);
+    		}
+    	},
+    	
+    	/**
     	 * make the original element invisible and create the clone with a fixed position
+    	 * only create a clone if element doesn't already have a clone on the page
     	 * @param options, object
     	 */
     	_createClone: function(options)
     	{
     		var element = options && options.element ? options.element : undefined;
-    		if(element) {
-    			//remove any previous clone
-    			this._destroy(options);
-    			
+    		var hasClone = $(element).attr(this.ATTRIBUTE_CLONE_CLASS);
+    		if(element && !hasClone) 
+    		{
     			//create clone
     			var cloneClass = this.NAMESPACE + "_" + Math.round(Math.random() * 10000000);
     			var clone = $(element).clone(true, true); //deep cloning with data and events
-    			$(clone).addClass(cloneClass).css("position", "fixed");
+    			$(clone).removeClass(this.ORIGINAL_ELEMENT_CLASS).addClass(cloneClass).css("position", "fixed");
     			
     			//defaults if nothing is set
     			if(options.top == null && options.bottom == null) {
@@ -93,6 +119,9 @@ jQuery.extend({
     			}
     			if(options.left == null && options.right == null) {
     				options.left = 0;
+    			}
+    			if(!options.parent) {
+    				options.parent = $("body");
     			}
     			
     			//apply user defined positions
@@ -110,22 +139,52 @@ jQuery.extend({
     			}
     			
     			//add clone to page
-    			$("body").append(clone);
-    			$(element).css("visibility", "hidden").attr(this.ATTRIBUTE_CLONE_CLASS, cloneClass)
-    				.addClass(this.ORIGINAL_ELEMENT_CLASS); //add class so it can be selected on window scroll
-    			
-    			//attach window scroll event handler
-    			var self = this;
-    			var scrollEvent = "scroll." + this.NAMESPACE;
-    			$(window).on(scrollEvent, function(event){
-    				self._onWindowScroll(event);
-    			}).trigger(scrollEvent);
+    			$(options.parent).append(clone);
+    			$(element).attr(this.ATTRIBUTE_CLONE_CLASS, cloneClass); //add class so it can be selected on window scroll
+    		}
+    	},
+    	
+    	/**
+    	 * remove the clone from the page
+    	 * does not remove the options from the original element
+    	 * @param options, object 
+    	 */
+    	_removeClone: function(options)
+    	{
+    		var element = options && options.element ? options.element : undefined;
+    		if(element){
+    			var cloneClass = $(element).attr(this.ATTRIBUTE_CLONE_CLASS);
+    			$("." + cloneClass).remove();
+    			$(element).removeAttr(this.ATTRIBUTE_CLONE_CLASS);
+    		}
+    	},
+    	
+    	/**
+    	 * clone the clone and append it to where the original element was in the DOM
+    	 * so the state could be preserved
+    	 * @param options, object 
+    	 */
+    	_updateOriginalToMatchClone: function(options)
+    	{
+    		var element = options && options.element ? options.element : undefined;
+    		if(element){
+    			var cloneClass = $(element).attr(this.ATTRIBUTE_CLONE_CLASS);
+    			var clone = $("." + cloneClass);
+    			if(clone.size() > 0)
+    			{
+    				var clone2 = $(clone).clone(true, true);
+	    			$(clone2).attr(this.ATTRIBUTE_CLONE_CLASS, cloneClass).removeClass(cloneClass)
+	    				.addClass(this.ORIGINAL_ELEMENT_CLASS); //make the clone an original element
+	    			$(clone2).attr("style", ""); //remove any added css
+	    			$(element).after(clone2).remove();
+	    			options.element = $(clone2);
+    			}
     		}
     	},
     	
     	/**
     	 * when window scroll is detected
-    	 * go through all hachiko elements and determine if their clone should be shown
+    	 * go through all hachiko elements and determine if a clone should be created/shown or removed
     	 * @param event, window scroll event 
     	 */
     	_onWindowScroll: function(event) 
@@ -133,18 +192,18 @@ jQuery.extend({
     		var self = this;
     		var elements = $("." + this.ORIGINAL_ELEMENT_CLASS);
     		$(elements).each(function(){
-    			var cloneClass = $(this).attr(self.ATTRIBUTE_CLONE_CLASS);
-    			var clone = $("." + cloneClass);
+    			var options = $(this).data(self.NAMESPACE);
     			var originalTop = $(this).offset().top;
     			var currentTop = $(window).scrollTop();
     			
-    			if(currentTop >= originalTop) {
+    			var amount = options.top != null ? options.top : ($(window).height() - $(element).outerHeight() - options.bottom);
+    			if( currentTop >= (originalTop - amount) ) {
+    				self._createClone(options);
     				$(this).css("visibility", "hidden");
-    				$(clone).show();
     			}
     			else {
-    				$(this).css("visibility", "visible");
-    				$(clone).hide();
+    				self._updateOriginalToMatchClone(options); //will show original by default
+    				self._removeClone(options);
     			}
     		});
     	},
@@ -158,9 +217,8 @@ jQuery.extend({
     	{
     		var element = options && options.element ? options.element : undefined;
     		if(element){
-    			var cloneClass = $(element).attr(this.ATTRIBUTE_CLONE_CLASS);
-    			$("." + cloneClass).remove();
-    			$(element).css("visibility", "").removeClass(this.ORIGINAL_ELEMENT_CLASS).removeAttr(this.ATTRIBUTE_CLONE_CLASS);
+    			this._removeClone(options);
+    			$(element).css("visibility", "").removeClass(this.ORIGINAL_ELEMENT_CLASS).data(this.NAMESPACE, null);
     		}
     	},
     	
