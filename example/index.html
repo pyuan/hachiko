@@ -12,6 +12,10 @@
 		line-height: 24px;
 	}
 	
+	p {
+		margin: 50px 0px;
+	}
+	
 	#sticky {
 		position: relative;
 		overflow: hidden;
@@ -36,7 +40,7 @@
 
 	$(function() {
 		
-		//show that deep clone works with event binding
+		//show that deep clone works with event binding and preserves state change on user interaction with the clone
 		$("#sticky").on("click", function(){
 			$(this).toggleClass("green");
 		});
@@ -60,8 +64,8 @@
 	
 	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dolor diam, dictum vulputate rutrum eu, pharetra et ligula. Suspendisse volutpat nunc eu arcu aliquet vel mollis dolor sollicitudin. Cras sit amet justo odio. Phasellus varius ultrices massa, sit amet mattis quam scelerisque semper. Sed pharetra lacus vitae lacus accumsan tincidunt. Phasellus erat magna, sagittis dictum bibendum nec, interdum at tellus. Maecenas id risus lorem, et sollicitudin ipsum. Nunc nec lacinia ligula. Aenean eget fermentum ligula.</p>
 	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dolor diam, dictum vulputate rutrum eu, pharetra et ligula. Suspendisse volutpat nunc eu arcu aliquet vel mollis dolor sollicitudin. Cras sit amet justo odio. Phasellus varius ultrices massa, sit amet mattis quam scelerisque semper. Sed pharetra lacus vitae lacus accumsan tincidunt. Phasellus erat magna, sagittis dictum bibendum nec, interdum at tellus. Maecenas id risus lorem, et sollicitudin ipsum. Nunc nec lacinia ligula. Aenean eget fermentum ligula.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis nisl nec nisl ullamcorper commodo. Phasellus non nulla turpis. Vivamus convallis viverra mauris eget ullamcorper. Cras congue, magna gravida porttitor commodo, lorem libero dictum sapien, sed eleifend mi diam sit amet ipsum. Donec neque elit, pellentesque in blandit a, hendrerit ac augue. Duis dictum molestie varius. Nullam suscipit dictum dolor sed pellentesque. Maecenas nec ullamcorper neque. Quisque quis adipiscing dolor. Nulla facilisi. Nam faucibus, diam et hendrerit tincidunt, justo lectus venenatis mauris, id porta nunc enim at turpis. Donec imperdiet tellus et est scelerisque nec gravida arcu laoreet. Fusce ornare libero eu ipsum ornare sit amet auctor nisi cursus.</p>
 	<div id="sticky"></div>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis nisl nec nisl ullamcorper commodo. Phasellus non nulla turpis. Vivamus convallis viverra mauris eget ullamcorper. Cras congue, magna gravida porttitor commodo, lorem libero dictum sapien, sed eleifend mi diam sit amet ipsum. Donec neque elit, pellentesque in blandit a, hendrerit ac augue. Duis dictum molestie varius. Nullam suscipit dictum dolor sed pellentesque. Maecenas nec ullamcorper neque. Quisque quis adipiscing dolor. Nulla facilisi. Nam faucibus, diam et hendrerit tincidunt, justo lectus venenatis mauris, id porta nunc enim at turpis. Donec imperdiet tellus et est scelerisque nec gravida arcu laoreet. Fusce ornare libero eu ipsum ornare sit amet auctor nisi cursus.</p>
 	<p>Sed sollicitudin, diam sit amet viverra fermentum, purus justo interdum massa, et pulvinar elit augue vel augue. Cras quis lacus odio, non condimentum dui. Mauris mollis rutrum turpis ut dapibus. Donec a pulvinar tellus. Etiam tempor dolor nec tortor placerat accumsan. Integer lobortis odio vel nibh egestas interdum. Vestibulum eleifend ultricies dui ut ultricies. Vestibulum vehicula velit sed dolor condimentum viverra suscipit nunc posuere. Sed mattis vestibulum metus, nec semper sem tempor at. Integer nec elit eros. Morbi ut elit purus, at bibendum ante. Suspendisse vitae venenatis mi. Morbi ut semper leo. Duis nec luctus velit.</p>
 	<p>Vivamus sapien ligula, aliquam vel tempus a, porta id est. Nulla egestas placerat rutrum. Nulla velit erat, laoreet ac interdum vel, laoreet et justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec non dolor purus. Morbi tempor rutrum turpis, in posuere urna tempor sed. In tincidunt, nisl in accumsan aliquam, urna arcu porttitor sapien, ac convallis lectus augue nec neque. Aliquam non sem non arcu lacinia rutrum. Vivamus eu ornare nibh. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum accumsan sem at libero venenatis placerat. Proin tincidunt lorem vitae ligula tincidunt quis tincidunt massa lobortis.</p>
 	<p>Integer sit amet arcu vehicula massa bibendum posuere aliquet quis nibh. Integer ultrices suscipit velit, at accumsan tortor egestas eu. Pellentesque ut nisi ut sapien rhoncus lobortis. Nulla urna arcu, blandit ultrices facilisis id, dapibus eu tortor. Maecenas placerat porttitor arcu, vitae gravida nulla scelerisque vitae. Aliquam condimentum auctor tempor. Vestibulum ac ornare odio. Duis posuere pharetra magna fringilla sollicitudin. Nullam ac dolor libero, eu malesuada eros. Sed lectus ante, egestas sit amet pellentesque in, dignissim ut urna. Quisque id massa ipsum. In hac habitasse platea dictumst. Praesent mattis eros eget augue tristique lobortis. In pulvinar pulvinar viverra. Pellentesque ac pulvinar velit.</p>

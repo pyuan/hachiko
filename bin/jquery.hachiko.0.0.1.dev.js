@@ -10,6 +10,7 @@
 		return this.each(function() {
 			opts.element = $(this);
 			
+			$.hachiko._updateOriginalToMatchClone(opts); //always make sure to update original in case there is already a clone
 			if(!isDestroyCommand(opts)) {
 				$.hachiko._init(opts);
 			}
