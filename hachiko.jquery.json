@@ -1,0 +1,36 @@
+{
+  "name": "cftoaster",
+  "title": "CFToaster jQuery Toast Message",
+  "description": "A light-weight jQuery plugin to create a toast message as seen on the android platform.",
+  "keywords": [
+    "toast",
+    "message",
+    "android"
+  ],
+  "version": "1.0.0",
+  "author": {
+    "name": "Paul Yuan",
+    "url": "http://paulyuan.ca"
+  },
+  "maintainers": [
+    {
+      "name": "Paul Yuan",
+      "email": "pyuana@gmail.com",
+      "url": "https://twitter.com/pyuan"
+    }
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/MIT"
+    }
+  ],
+  "bugs": "https://github.com/pyuan/cftoaster/issues",
+  "homepage": "https://github.com/pyuan/cftoaster",
+  "docs": "https://github.com/pyuan/cftoaster",
+  "download": "https://github.com/pyuan/cftoaster",
+  "demo": "https://github.com/pyuan/cftoaster",
+  "dependencies": {
+    "jquery": ">=1.5"
+  }
+}
