@@ -176,7 +176,7 @@ jQuery.extend({
     				var clone2 = $(clone).clone(true, true);
 	    			$(clone2).attr(this.ATTRIBUTE_CLONE_CLASS, cloneClass).removeClass(cloneClass)
 	    				.addClass(this.ORIGINAL_ELEMENT_CLASS); //make the clone an original element
-	    			$(clone2).attr("style", ""); //remove any added css
+	    			$(clone2).css({position: "", top: "", bottom: "", left: "", right: ""}); //remove all added css from hachiko
 	    			$(element).after(clone2).remove();
 	    			options.element = $(clone2);
     			}
