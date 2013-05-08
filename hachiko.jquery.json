@@ -1,11 +1,11 @@
 {
-  "name": "cftoaster",
-  "title": "CFToaster jQuery Toast Message",
-  "description": "A light-weight jQuery plugin to create a toast message as seen on the android platform.",
+  "name": "hachiko",
+  "title": "Hachiko jQuery sticky",
+  "description": "A jQuery sticky plugin that allows a relatively positioned element to be stickied onto the screen when the element is scrolled outside of the viewport. Instead of changing the position of the element on window scroll, this plugin creates a clone of the original element and set the clone to be fixed positioned so the original layout is always preserved.",
   "keywords": [
-    "toast",
-    "message",
-    "android"
+    "sticky",
+    "position",
+    "stay"
   ],
   "version": "1.0.0",
   "author": {
@@ -25,11 +25,11 @@
       "url": "http://opensource.org/licenses/MIT"
     }
   ],
-  "bugs": "https://github.com/pyuan/cftoaster/issues",
-  "homepage": "https://github.com/pyuan/cftoaster",
-  "docs": "https://github.com/pyuan/cftoaster",
-  "download": "https://github.com/pyuan/cftoaster",
-  "demo": "https://github.com/pyuan/cftoaster",
+  "bugs": "https://github.com/pyuan/hachiko/issues",
+  "homepage": "https://github.com/pyuan/hachiko",
+  "docs": "https://github.com/pyuan/hachiko",
+  "download": "https://github.com/pyuan/hachiko",
+  "demo": "http://paulyuan.ca/hachiko/example/",
   "dependencies": {
     "jquery": ">=1.5"
   }

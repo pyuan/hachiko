@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Hachikō</title>
+<link rel="shortcut icon" href="favicon.png"/>	
 
 <style type="text/css">
 
@@ -10,6 +11,8 @@
 		font-family: sans-serif;
 		font-size: 16px;
 		line-height: 24px;
+		color: #3a3a3a;
+		margin: 25px;
 	}
 	
 	p {
@@ -21,11 +24,22 @@
 		overflow: hidden;
 		width: 100%;
 		height: 50px;
-		background-color: blue;
+		color: white;
+		font-size: 20px;
+		white-space: nowrap;
+		line-height: 50px;
+		padding: 0px 0px 0px 20px;
+		box-sizing: border-box;
+		background-color: #bdccd4;
+		cursor: pointer;
 	}
 	
-	#sticky.green {
-		background-color: green;
+	#sticky.yellow {
+		background-color: #fbb03b;
+	}
+	
+	button {
+		font-size: 20px;
 	}
 
 </style>
@@ -34,7 +48,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
 
 <!-- jQuery Hachiko plugin -->
-<script type="text/javascript" src="../bin/jquery.hachiko.0.0.1.dev.js"></script>
+<script type="text/javascript" src="../bin/jquery.hachiko.1.0.0.min.js"></script>
 
 <script type="text/javascript">
 
@@ -42,17 +56,18 @@
 		
 		//show that deep clone works with event binding and preserves state change on user interaction with the clone
 		$("#sticky").on("click", function(){
-			$(this).toggleClass("green");
+			$(this).toggleClass("yellow");
 		});
 		
-		//click handler to remove hachiko from an element
+		//click handler to remove hachiko from elements
 		$("#remove").on("click", function(){
-			$("#sticky").hachiko("destroy");
+			$("#sticky, #logo").hachiko("destroy");
 		});
 		
-		//click handler to add hachiko to an element and trigger it
+		//click handler to add hachiko to some elements and then trigger it
 		$("#add").on("click", function(){
 			$("#sticky").hachiko({top: 0});
+			$("#logo").hachiko({bottom: 0, right: 0});
 		}).trigger("click");
 		
 	});	
@@ -62,16 +77,20 @@
 </head>
 <body>
 	
+	<h1>Hachikō (ハチ公)</h1>
 	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dolor diam, dictum vulputate rutrum eu, pharetra et ligula. Suspendisse volutpat nunc eu arcu aliquet vel mollis dolor sollicitudin. Cras sit amet justo odio. Phasellus varius ultrices massa, sit amet mattis quam scelerisque semper. Sed pharetra lacus vitae lacus accumsan tincidunt. Phasellus erat magna, sagittis dictum bibendum nec, interdum at tellus. Maecenas id risus lorem, et sollicitudin ipsum. Nunc nec lacinia ligula. Aenean eget fermentum ligula.</p>
 	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dolor diam, dictum vulputate rutrum eu, pharetra et ligula. Suspendisse volutpat nunc eu arcu aliquet vel mollis dolor sollicitudin. Cras sit amet justo odio. Phasellus varius ultrices massa, sit amet mattis quam scelerisque semper. Sed pharetra lacus vitae lacus accumsan tincidunt. Phasellus erat magna, sagittis dictum bibendum nec, interdum at tellus. Maecenas id risus lorem, et sollicitudin ipsum. Nunc nec lacinia ligula. Aenean eget fermentum ligula.</p>
-	<div id="sticky"></div>
+	<div id="sticky">Click me to see how the state is preserved when stickied</div>
 	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mattis nisl nec nisl ullamcorper commodo. Phasellus non nulla turpis. Vivamus convallis viverra mauris eget ullamcorper. Cras congue, magna gravida porttitor commodo, lorem libero dictum sapien, sed eleifend mi diam sit amet ipsum. Donec neque elit, pellentesque in blandit a, hendrerit ac augue. Duis dictum molestie varius. Nullam suscipit dictum dolor sed pellentesque. Maecenas nec ullamcorper neque. Quisque quis adipiscing dolor. Nulla facilisi. Nam faucibus, diam et hendrerit tincidunt, justo lectus venenatis mauris, id porta nunc enim at turpis. Donec imperdiet tellus et est scelerisque nec gravida arcu laoreet. Fusce ornare libero eu ipsum ornare sit amet auctor nisi cursus.</p>
 	<p>Sed sollicitudin, diam sit amet viverra fermentum, purus justo interdum massa, et pulvinar elit augue vel augue. Cras quis lacus odio, non condimentum dui. Mauris mollis rutrum turpis ut dapibus. Donec a pulvinar tellus. Etiam tempor dolor nec tortor placerat accumsan. Integer lobortis odio vel nibh egestas interdum. Vestibulum eleifend ultricies dui ut ultricies. Vestibulum vehicula velit sed dolor condimentum viverra suscipit nunc posuere. Sed mattis vestibulum metus, nec semper sem tempor at. Integer nec elit eros. Morbi ut elit purus, at bibendum ante. Suspendisse vitae venenatis mi. Morbi ut semper leo. Duis nec luctus velit.</p>
 	<p>Vivamus sapien ligula, aliquam vel tempus a, porta id est. Nulla egestas placerat rutrum. Nulla velit erat, laoreet ac interdum vel, laoreet et justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec non dolor purus. Morbi tempor rutrum turpis, in posuere urna tempor sed. In tincidunt, nisl in accumsan aliquam, urna arcu porttitor sapien, ac convallis lectus augue nec neque. Aliquam non sem non arcu lacinia rutrum. Vivamus eu ornare nibh. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum accumsan sem at libero venenatis placerat. Proin tincidunt lorem vitae ligula tincidunt quis tincidunt massa lobortis.</p>
+	<img id="logo" src="logo_hachiko.gif"/>
 	<p>Integer sit amet arcu vehicula massa bibendum posuere aliquet quis nibh. Integer ultrices suscipit velit, at accumsan tortor egestas eu. Pellentesque ut nisi ut sapien rhoncus lobortis. Nulla urna arcu, blandit ultrices facilisis id, dapibus eu tortor. Maecenas placerat porttitor arcu, vitae gravida nulla scelerisque vitae. Aliquam condimentum auctor tempor. Vestibulum ac ornare odio. Duis posuere pharetra magna fringilla sollicitudin. Nullam ac dolor libero, eu malesuada eros. Sed lectus ante, egestas sit amet pellentesque in, dignissim ut urna. Quisque id massa ipsum. In hac habitasse platea dictumst. Praesent mattis eros eget augue tristique lobortis. In pulvinar pulvinar viverra. Pellentesque ac pulvinar velit.</p>
 	<p>Etiam dui augue, auctor quis ultrices at, pharetra at nunc. Donec sit amet ipsum libero, vitae congue nisl. Curabitur varius venenatis tellus eu fringilla. Praesent eu nunc sit amet sapien lobortis ultricies sit amet in velit. Maecenas dui massa, gravida non interdum in, convallis vel sem. Praesent tellus eros, semper id tempor non, elementum sed nisl. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse bibendum lectus et neque suscipit tincidunt. Donec posuere, erat sit amet pellentesque gravida, velit metus laoreet purus, scelerisque consectetur odio justo non dui. Maecenas interdum tellus eu est viverra in lacinia tellus eleifend.</p>
-	<button id="remove">Remove Hachiko Sticky</button>
-	<button id="add">Add Hachiko Sticky</button>
+	<button id="remove">"Hachi, free!"</button>
+	<button id="add">"Hachi, stay!"</button>
+	<p>Integer sit amet arcu vehicula massa bibendum posuere aliquet quis nibh. Integer ultrices suscipit velit, at accumsan tortor egestas eu. Pellentesque ut nisi ut sapien rhoncus lobortis. Nulla urna arcu, blandit ultrices facilisis id, dapibus eu tortor. Maecenas placerat porttitor arcu, vitae gravida nulla scelerisque vitae. Aliquam condimentum auctor tempor. Vestibulum ac ornare odio. Duis posuere pharetra magna fringilla sollicitudin. Nullam ac dolor libero, eu malesuada eros. Sed lectus ante, egestas sit amet pellentesque in, dignissim ut urna. Quisque id massa ipsum. In hac habitasse platea dictumst. Praesent mattis eros eget augue tristique lobortis. In pulvinar pulvinar viverra. Pellentesque ac pulvinar velit.</p>
+	<p>Etiam dui augue, auctor quis ultrices at, pharetra at nunc. Donec sit amet ipsum libero, vitae congue nisl. Curabitur varius venenatis tellus eu fringilla. Praesent eu nunc sit amet sapien lobortis ultricies sit amet in velit. Maecenas dui massa, gravida non interdum in, convallis vel sem. Praesent tellus eros, semper id tempor non, elementum sed nisl. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse bibendum lectus et neque suscipit tincidunt. Donec posuere, erat sit amet pellentesque gravida, velit metus laoreet purus, scelerisque consectetur odio justo non dui. Maecenas interdum tellus eu est viverra in lacinia tellus eleifend.</p>
 		
 </body>
 </html> 

@@ -135,8 +135,8 @@ jQuery.extend({
     			if(options.left != null) {
     				$(clone).css("left", options.left);
     			}
-    			if(options.bottom != null) {
-    				$(clone).css("bottom", options.bottom);
+    			if(options.right != null) {
+    				$(clone).css("right", options.right);
     			}
     			
     			//add clone to page
@@ -197,7 +197,7 @@ jQuery.extend({
     			var originalTop = $(this).offset().top;
     			var currentTop = $(window).scrollTop();
     			
-    			var amount = options.top != null ? options.top : ($(window).height() - $(element).outerHeight() - options.bottom);
+    			var amount = options.top != null ? options.top : 0;
     			if( currentTop >= (originalTop - amount) ) {
     				self._createClone(options);
     				$(this).css("visibility", "hidden");
