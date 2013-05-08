@@ -1,7 +1,7 @@
 Hachiko
 =======
 
-![Hachiko logo](http://www.paulyuan.ca/hachiko/example/logo_hachiko.gif)
+[![Hachiko logo](http://www.paulyuan.ca/hachiko/example/logo_hachiko.gif)](http://paulyuan.ca/hachiko/example)
 
 A jQuery sticky plugin that allows a relatively positioned element to be stickied onto the screen when the element is scrolled outside of the viewport. Instead of changing the position of the element on window scroll, this plugin creates a clone of the original element and set the clone to be fixed positioned so the original layout is always preserved. [Example >](http://paulyuan.ca/hachiko/example) 
 
