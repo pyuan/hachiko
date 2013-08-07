@@ -28,6 +28,18 @@ The following would perform keep the element with the id "element" on the screen
 * **"parent"** - selector string or reference to the DOM element for which to insert the stickied element. This option is optional, if not specified, "body" would be used. 
 
 
+## Methods
+
+To retrieve the reference to the "stickied" / cloned element:
+	
+	var stickied = $.hachiko.getStickiedElement( [DOM element] );
+	
+The following would return the reference to the sticked/cloned element of an element with the id "greyBar", then modifying the text of its child element with the id "content":
+
+	var stickied = $.hachiko.getStickiedElement( $("#greyBar") );
+	$(stickied).find("#content").text( "insert cool text here" );  
+
+
 ## FAQ
 **If I have event binding on my original element, will the sticky element retain those bindings?**
 > Yes, Hachiko uses the deep clone option so all event binding will be cloned to the sticky element.
