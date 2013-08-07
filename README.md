@@ -37,7 +37,7 @@ To retrieve the reference to the "stickied" / cloned element:
 The following would return the reference to the sticked/cloned element of an element with the id "greyBar", then modifying the text of its child element with the id "content":
 
 	var stickied = $.hachiko.getStickiedElement( $("#greyBar") );
-	$(stickied).find("#content").text( "insert cool text here" );  
+	$(stickied).find("#content").text( "ワンワン" );  
 
 
 ## FAQ
