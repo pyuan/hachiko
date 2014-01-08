@@ -1,0 +1,10 @@
+{
+  "name": "hachiko",
+  "version": "1.1.0",
+  "main": "bin/",
+  "description": "A jQuery sticky plugin that allows a relatively positioned element to be stickied onto the screen when the element is scrolled outside of the viewport.",
+  "license": "MIT",
+  "dependencies": {
+    "jQuery": "1.5.0"
+  }
+}
